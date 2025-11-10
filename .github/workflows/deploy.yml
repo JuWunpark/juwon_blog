@@ -8,26 +8,77 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
+      # 0) SSH 키/known_hosts 준비
       - name: Setup SSH
         run: |
           set -e
-          PORT="${{ secrets.SERVER_PORT }}"
-          [ -z "$PORT" ] && PORT=22
-      
-          HOST="${{ secrets.SERVER_HOST }}"
-          USERNAME="${{ secrets.SERVER_USER }}"
-      
-          if [ -z "$HOST" ]; then echo "❌ SERVER_HOST is empty"; exit 1; fi
-          if [ -z "$USERNAME" ]; then echo "❌ SERVER_USER is empty"; exit 1; fi
-      
-          echo "Inputs OK (HOST masked), PORT=$PORT"
           mkdir -p ~/.ssh
           echo "${{ secrets.SERVER_SSH_KEY }}" > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
-          ssh-keyscan -p "${{ secrets.SERVER_PORT }}" -H "${{ secrets.SERVER_HOST }}" >> ~/.ssh/known_hosts
 
+          PORT="${{ secrets.SERVER_PORT }}"
+          [ -z "$PORT" ] && PORT=22
+
+          HOST="${{ secrets.SERVER_HOST }}"
+          if [ -z "$HOST" ]; then echo "❌ SERVER_HOST is empty"; exit 1; fi
+
+          # 호스트키 등록
+          ssh-keyscan -p "$PORT" -H "$HOST" >> ~/.ssh/known_hosts
+
+      # 1) 시크릿 값 검증(비어있으면 즉시 실패)
+      - name: Validate inputs
+        run: |
+          set -e
+          PORT="${{ secrets.SERVER_PORT }}"; [ -z "$PORT" ] && PORT=22
+          HOST="${{ secrets.SERVER_HOST }}"
+          USERNAME="${{ secrets.SERVER_USER }}"
+          if [ -z "$HOST" ]; then echo "❌ SERVER_HOST is empty"; exit 1; fi
+          if [ -z "$USERNAME" ]; then echo "❌ SERVER_USER is empty"; exit 1; fi
+          echo "Inputs OK (HOST masked), PORT=$PORT"
+
+      # 2) 원격 배포 (서버에서 빌드 → 정적 파일 동기화)
       - name: Deploy to server
         run: |
-          ssh -i ~/.ssh/deploy_key -p "${{ secrets.SERVER_PORT }}" \
-            -o
+          set -e
+          PORT="${{ secrets.SERVER_PORT }}"; [ -z "$PORT" ] && PORT=22
+          HOST="${{ secrets.SERVER_HOST }}"
+          USERNAME="${{ secrets.SERVER_USER }}"
+
+          ssh -i ~/.ssh/deploy_key -p "$PORT" \
+            -o StrictHostKeyChecking=yes \
+            -o UserKnownHostsFile=~/.ssh/known_hosts \
+            "$USERNAME@$HOST" '
+            set -euo pipefail
+            echo "[deploy] start"
+
+            # 리포 경로 (확인됨: /home/ubuntu/myblog)
+            cd /home/ubuntu/myblog
+
+            # rbenv 초기화 (비대화식 세션)
+            export RBENV_ROOT="$HOME/.rbenv"
+            export PATH="$RBENV_ROOT/bin:$PATH"
+            eval "$(rbenv init - bash)"
+            hash -r
+
+            # Ruby/Bundler 대비(없으면 설치)
+            command -v ruby >/dev/null || rbenv install -s 3.3.5
+            rbenv global 3.3.5
+            gem install bundler --no-document || true
+
+            echo "[deploy] git pull"
+            git pull --ff-only origin main
+
+            echo "[deploy] bundle install"
+            bundle install
+
+            echo "[deploy] jekyll build"
+            bundle exec jekyll build -s . -d _site
+
+            # Nginx 문서 루트 (확인됨: /var/www/myblog)
+            echo "[deploy] rsync to web root"
+            rsync -az --delete _site/ /var/www/myblog/
+
+            echo "[deploy] done"
+          '
