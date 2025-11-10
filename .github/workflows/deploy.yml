@@ -67,8 +67,10 @@ jobs:
             rbenv global 3.3.4
             gem install bundler --no-document || true
 
-            echo "[deploy] git pull"
-            git pull --ff-only origin main
+            
+            echo "[deploy] sync to origin/main"
+            git fetch origin
+            git reset --hard origin/main
 
             echo "[deploy] bundle install"
             bundle install
