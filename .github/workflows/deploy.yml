@@ -63,8 +63,8 @@ jobs:
             hash -r
 
             # Ruby/Bundler 대비(없으면 설치)
-            command -v ruby >/dev/null || rbenv install -s 3.3.5
-            rbenv global 3.3.5
+            command -v ruby >/dev/null || rbenv install -s 3.3.4
+            rbenv global 3.3.4
             gem install bundler --no-document || true
 
             echo "[deploy] git pull"
