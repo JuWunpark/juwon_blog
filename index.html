@@ -1,3 +1,13 @@
 ---
 layout: default
+title: Home
 ---
+
+<h2>Latest Posts</h2>
+<ul>
+  {% for post in site.posts %}
+    <li><a href="{{ post.url | relative_url }}">{{ post.title }}</a> — {{ post.date | date: "%Y-%m-%d" }}</li>
+  {% else %}
+    <li>아직 포스트가 없습니다.</li>
+  {% endfor %}
+</ul>
