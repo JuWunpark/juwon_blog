@@ -1,7 +1,6 @@
 ---
-layout: default
-title: About
-permalink: /me/
+layout: me
+title: README
 ---
 
 ## 안녕하세요, 주원입니다 👋
