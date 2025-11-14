@@ -1,3 +1,17 @@
+---
+layout: post
+read_time: true
+show_date: true
+title: "Django 기반 AI 퀴즈 생성 플랫폼 프로젝트 구조 분석"
+date: 2025-11-14 23:59:00 +0900
+description: Django 5.1.6 기반의 AI 퀴즈 생성 플랫폼(Quizly) 프로젝트의 디렉터리 구조와 각 파일/폴더의 역할을 상세히 분석한 글입니다
+img:
+tags: [Django, Python, 프로젝트구조, AI, 웹개발]
+author: Juwon
+github: JuWunpark/juwon_blog
+---
+
+
 # Quizly 프로젝트 구조 분석
 
 ## 1. 프로젝트 개요
