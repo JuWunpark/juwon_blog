@@ -11,10 +11,6 @@ author: Juwon
 github: JuWunpark/juwon_blog
 ---
 
-
-
-# Quizly 프로젝트 구조 분석
-
 ## 1. 프로젝트 개요
 
 **Quizly**는 OpenAI API를 활용하여 사용자가 업로드한 학습 자료(PDF, DOCX, PPTX)를 분석하고, 자동으로 다양한 유형의 퀴즈 문제를 생성하는 AI 기반 학습 플랫폼입니다.
