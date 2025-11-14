@@ -121,7 +121,7 @@ jobs:
   title: "Juwon"
   description: "주원의 윈도우95 테마 블로그"
 ```
----
+
 About 링크와 페이지
 상단 메뉴 파일: _includes/topbar.html
 ```
@@ -157,7 +157,7 @@ About 링크와 페이지
   [deploy] rsync to web root
   [deploy] done
 ```
-##결론
+## 결론
 성공적으로 서버도 실행됨 변경사항도 잘 수정됨을 확인 이제 앞으로 개발 관련 모든 기록을 여기다가 업로드할 예정 목표는 적어도 1주일에 4번은 글쓰기 잘 할 수있을지 모르겠다 
 
 
