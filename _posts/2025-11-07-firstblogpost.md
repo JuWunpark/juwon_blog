@@ -23,13 +23,13 @@ github: JuWunpark/juwon_blog
 ↓
 GitHub Actions (SSH)
 ↓
-EC2: /home/ubuntu/myblog
+**EC2**: /home/ubuntu/myblog
 
-  rbenv Ruby 3.3.4
+ - rbenv Ruby 3.3.4
 
-  bundle install → jekyll build
+ - bundle install → jekyll build
 
-  _site/ → rsync → /var/www/myblog
+ - _site/ → rsync → /var/www/myblog
   ↓
   Nginx(80/443) → https://blog.juwonpark.me
 
@@ -53,10 +53,9 @@ ruby -v || rbenv install -s 3.3.4
 rbenv global 3.3.4
 gem install bundler jekyll --no-document
 ```
+## GitHub Actions 워크플로
 
-##GitHub Actions 워크플로
-
-핵심은 서버에 SSH 접속 → 리포 강제 동기화 → 빌드 → rsync 배포.
+- 핵심은 서버에 SSH 접속 → 리포 강제 동기화 → 빌드 → rsync 배포.
 ```
 # .github/workflows/deploy.yml (발췌)
 name: Deploy to Server
@@ -113,7 +112,7 @@ jobs:
 
             echo "[deploy] done"
 ```
-##테마/페이지 커스터마이징
+## 테마/페이지 커스터마이징
 ```
   title: "Juwon"
   description: "주원의 윈도우95 테마 블로그"
@@ -125,7 +124,8 @@ About 링크와 페이지
   <a href="{{ '/me/' | relative_url }}"><li>About</li></a>
 ```
 처음 시작은 윈도우95 theme으로 시작했으나 내가 원하는 블로그에 적절하지 않아서 변경 
-#초가 theme: 
+
+# 초기 theme: 
 [Windows 95 테마 데모](https://h01000110.github.io/20170917/windows-95)
 
 
@@ -139,10 +139,11 @@ About 링크와 페이지
 | 한글 깨짐                                  | meta/헤더에 charset 없음          | `<meta charset="utf-8">` + `charset utf-8;`                        |
 
 
-##로컬 없이 “바로 글 쓰기” 루틴
-GitHub에서 새 포스트 파일 만들기: _posts/2025-11-11-my-post.md
-본문 작성 → Commit to main
-Actions 탭에서 Deploy to Server가 실행되는지 확인
+## 로컬 없이 “바로 글 쓰기” 루틴
+1. GitHub에서 새 포스트 파일 만들기: _posts/2025-11-11-my-post.md
+2. 본문 작성 → Commit to main
+3. Actions 탭에서 Deploy to Server가 실행되는지 확인
+
 로그에 아래 순서가 보이면 성공:
 ```
   [deploy] sync to origin/main
