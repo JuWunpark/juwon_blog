@@ -10,7 +10,7 @@ tags: [devops, django, systemd, monitoring, ubuntu]
 author: Juwon
 ---
 
-## 핵심은 요약하
+## 핵심요약
 
 > **“서비스가 살아만 있는지”가 아니라
 > **얼마나 빠르고 안정적으로 잘 돌아가는지** 숫자로 계속 확인하는 것**
