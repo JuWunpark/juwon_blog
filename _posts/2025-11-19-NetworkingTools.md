@@ -1,8 +1,18 @@
-오키, 지금까지 한 거 **짧은 블로그 초안** 형태로 정리해줄게 ✍️
 
 ---
+layout: post
+read_time: true
+show_date: true
+title: "DevOps3 Networking Tools"
+date: 2025-11-19 
+description: Networking Tools로 서비스 상태 빠르게 체크하기 (실습 기록)
+tags: [devops, django, systemd, monitoring, ubuntu]
+author: Juwon
+---
 
-## Networking Tools로 서비스 상태 빠르게 체크하기 (실습 기록)
+
+
+## Networking Tools(실습 기록)
 
 Ubuntu 서버에서 `quizai.juwonpark.me`를 운영하면서, 기본적인 **네트워크 진단 도구**들을 직접 찍어보며 정리한 내용이다. “사이트가 안 열릴 때 어디부터 봐야 하는지”를 감 잡는 게 목표였다.
 
@@ -154,9 +164,8 @@ tcp LISTEN 0 80      127.0.0.1:3306   0.0.0.0:* users:(("mariadbd",pid=...,fd=22
 이 네 가지만 익혀도
 
 > “DNS 문제냐, Cloudflare 문제냐, Nginx/백엔드 문제냐”
-> 를 훨씬 빨리 좁혀갈 수 있다.
+> 를 훨씬 빨리 좁혀갈 수 있겠단 생각이 든다.
 
 ---
-
-필요하면 이 글 기반으로 **스크린샷 몇 개 + 명령어 출력 캡처** 붙이면 바로 블로그 글로 쓸 수 있을 거야 😊
-다음에는 `ufw` / AWS 보안그룹이랑 같이 묶어서 “포트·방화벽까지 포함한 전체 흐름”도 한 번 정리해보자.
+## 결론 
+* 뭐 기억이 그때그때 날진 모르겠지만 종종 개발한거 서버에 올리고 배포할때마다 사용할 것 같다.
