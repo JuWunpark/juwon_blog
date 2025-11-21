@@ -1,5 +1,17 @@
-````markdown
-# AWS Security Group + ufw로 이해하는 방화벽 흐름 정리
+---
+layout: post
+read_time: true
+show_date: true
+title: "DevOps3 Firewalld"
+date: 2025-11-19 
+description: AWS Security Group + ufw로 이해하는 방화벽 흐름 정리
+img:
+tags: [devops, django, systemd, monitoring, ubuntu]
+author: Juwon
+---
+
+
+
 
 오늘은 네트워크 도구가 아니라, **방화벽(Firewall)** 관점에서  
 내 EC2 서버를 어떻게 보호하고, 어디까지 트래픽이 들어오는지 정리해봤다.
@@ -293,13 +305,9 @@ curl -I http://서버공인IP:8000
 
 오늘 정리한 포인트를 한 줄로 요약하면:
 
-> **Security Group은 “클라우드 레벨 문지기”,
-> ufw는 “서버 OS 레벨 문지기”,
+> **Security Group은 “클라우드 레벨 문지기”, aws 등에서 제공하는 가상 방화벽
+> ufw는 “서버 OS 레벨 문지기”, os에서 제공하는 방화벽 
 > dig/ss/curl은 “이 문들이 어떻게 열리고 막혀 있는지 관찰하는 도구들”이다.**
+> 사용자 → cloudflare 엣지 서버→ aws 보안그룹 → EC2 → Django 대략 이런 희름 
 
-이 흐름만 머릿속에 들어 있으면,
-“그냥 안 돼요…”에서 끝나는 게 아니라
-**어디까지는 되고, 어디서부터 막히는지**를 단계별로 추적할 수 있다.
 
-```
-```
