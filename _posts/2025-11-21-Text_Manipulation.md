@@ -1,9 +1,14 @@
-
-
-
-
-# Ubuntu 터미널에서 Text Manipulation으로 Nginx 로그 분석하기  
-— `awk | sort | uniq | sort | head` 파이프라인 완전 이해
+---
+layout: post
+read_time: true
+show_date: true
+title: "DevOps4 Text Manipulation"
+date: 2025-11-21
+description: Ubuntu 터미널에서 Text Manipulation으로 Nginx 로그 분석하기 
+img:
+tags: [devops, django, systemd, monitoring, ubuntu]
+author: Juwon
+---
 
 서버/DevOps 작업을 하다 보면 결국 매일 보는 건 **텍스트**입니다.
 
@@ -206,10 +211,4 @@ awk '{print $1}' /var/log/nginx/access.log |
 이 글에서 정리한 패턴만 익숙해져도,
 Ubuntu 서버에서 로그를 다루는 감각이 훨씬 좋아질 거다.
 
-```markdown
-(필요하면 다음 글에서 `grep`이랑 `sed`로
-에러 로그 필터링 + 포트/경로 일괄 변경도 정리 예정)
-```
 
-```
-```
