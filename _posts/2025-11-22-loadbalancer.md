@@ -1,11 +1,13 @@
-
-# Quiz_AI 서버에 Nginx 로드 밸런서 적용하고 정리한 날 (2025-11-22)
-
-오늘은 내가 돌리고 있는 **Quiz_AI 서비스**에 간단한 로드 밸런싱을 붙이고,  
-기존 **Jekyll 블로그(blog.juwonpark.me)** 설정까지 같이 점검한 내용을 정리해본다.
-
 ---
-
+layout: post
+read_time: true
+show_date: true
+title: "DevOps 6 Roadbalancer"
+date: 2025-11-22
+description:  Quiz_AI 서버에 Nginx 로드 밸런서 적용
+tags: [devops, django, ubuntu]
+author: Juwon
+---
 ## 1. 목표: Django 서버를 두 개로 나눠 받고 Nginx로 분산하기
 
 기존 구조는:
