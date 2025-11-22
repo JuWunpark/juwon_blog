@@ -1,11 +1,14 @@
-
-
-
-# Reverse Proxy 개념 간단 정리 (Nginx + Django 기준)
-
-오늘은 **reverse proxy(역방향 프록시)**가 뭔지, 그리고 **Nginx + Django 배포에서 어떤 역할을 하는지**를 정리해본다.
-
 ---
+layout: post
+read_time: true
+show_date: true
+title: "DevOps 5 Reverse Proxy"
+date: 2025-11-22
+description: Reverse Proxy 개념 간단 정리 (Nginx + Django 기준)
+tags: [devops, django, systemd, monitoring, ubuntu]
+author: Juwon
+---
+
 
 ## 1. Reverse Proxy란?
 
@@ -145,10 +148,6 @@ Django 설정의 `SECURE_PROXY_SSL_HEADER`, `USE_X_FORWARDED_HOST` 같은 옵션
   *브라우저 → Nginx(reverse proxy) → gunicorn → Django*
 * 주소/포트는 보통 `gunicorn: 127.0.0.1:8000`, Nginx가 여기를 `proxy_pass`로 물어준다.
 
-```text
-결론: 장고를 “진짜 배포용”으로 올릴 때,
-runserver가 아니라 gunicorn + Nginx(reverse proxy)를 조합해서 쓰는 게 기본 패턴이다.
-```
+## 결론
+* reverse proxy는 서버로 들어오기 전 한번 걸러주는 곳이다 nginx가 그 역할을 한다 
 
-```
-```
