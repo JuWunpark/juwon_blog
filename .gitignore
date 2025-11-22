@@ -9,3 +9,4 @@ node_modules
 .DS_Store
 deploy.sh
 Gemfile.lock
+auto_commit*.log
